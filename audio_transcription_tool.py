@@ -66,12 +66,25 @@ def create_float_window():
     window_height = 120
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
-    x = screen_width - window_width - 20
-    y = screen_height - window_height - 100
+    x = screen_width - window_width  # 右边距为0
+    y = screen_height // 3  # 垂直方向1/3位置
     root.geometry(f"{window_width}x{window_height}+{x}+{y}")
     
     # 设置窗口背景
     root.configure(bg='#2c3e50')
+    
+    # 添加拖动功能
+    def on_drag_start(event):
+        root._drag_x = event.x
+        root._drag_y = event.y
+    
+    def on_drag_motion(event):
+        x = root.winfo_x() + event.x - root._drag_x
+        y = root.winfo_y() + event.y - root._drag_y
+        root.geometry(f"+{x}+{y}")
+    
+    root.bind('<Button-1>', on_drag_start)
+    root.bind('<B1-Motion>', on_drag_motion)
     
     # 创建标题标签
     title_label = ttk.Label(root, text="🎤 录音中...", 
