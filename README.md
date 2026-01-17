@@ -35,27 +35,43 @@
 - **pyautogui**：自动粘贴
 - **cx_Freeze**：打包成EXE
 
-## 快速开始
+## 安装步骤
 
-### 安装依赖
+### 1. 安装依赖
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 运行程序
+### 2. 一键安装（推荐）
+
+```bash
+install.bat
+```
+
+**install.bat 功能说明：**
+- 自动打包Python程序为可执行文件
+- 创建开始菜单快捷方式
+- 创建开机自启动快捷方式
+
+**安装完成后：**
+- 可执行文件位置: `build\exe.win-amd64-3.12\AudioTranscriptionTool.exe`
+- 开始菜单: 开始菜单 > 所有程序 > AudioTranscriptionTool
+- 开机自启动: 已添加到开机启动项
+
+### 3. 手动运行（开发调试）
 
 ```bash
 python audio_transcription_tool.py
 ```
 
-### 打包成EXE
+### 4. 手动打包
 
 ```bash
 python setup.py build
 ```
 
-生成的可执行文件位于 `build/exe.win-amd64-3.12/` 目录下。
+打包后的可执行文件位于 `build/exe.win-amd64-3.12/AudioTranscriptionTool.exe`
 
 ## 使用说明
 
@@ -67,6 +83,36 @@ python setup.py build
 
 ## 配置说明
 
+### 环境变量配置
+
+程序需要设置以下环境变量：
+
+```bash
+# API配置 - 符合OpenAI /v1/audio接口标准
+AUDIO_TRANSCRIPTION_URL=https://your-api-domain.com/v1/audio/transcriptions
+AUDIO_TRANSCRIPTION_TOKEN=your-api-token
+AUDIO_TRANSCRIPTION_MODEL=sensevoice
+```
+
+#### Windows (命令行)
+```bash
+set AUDIO_TRANSCRIPTION_URL=https://your-api-domain.com/v1/audio/transcriptions
+set AUDIO_TRANSCRIPTION_TOKEN=your-api-token
+set AUDIO_TRANSCRIPTION_MODEL=sensevoice
+```
+
+#### Windows (PowerShell)
+```powershell
+$env:AUDIO_TRANSCRIPTION_URL="https://your-api-domain.com/v1/audio/transcriptions"
+$env:AUDIO_TRANSCRIPTION_TOKEN="your-api-token"
+$env:AUDIO_TRANSCRIPTION_MODEL="sensevoice"
+```
+
+#### 永久设置（推荐）
+1. 右键"此电脑" → 属性
+2. 高级系统设置 → 环境变量
+3. 在系统变量中添加上述环境变量
+
 ### 设备选择
 
 在代码中修改 `selected_device` 变量来选择音频输入设备：
@@ -77,17 +123,12 @@ selected_device = 7  # 默认选择设备7
 
 运行程序时会列出所有可用的音频输入设备，你可以根据需要修改设备编号。
 
-### API配置
+### API兼容性
 
-在代码中修改 `CONFIG` 字典来配置API：
-
-```python
-CONFIG = {
-    "audio_transcription_url": "https://lgy-in-dev.cnbita.com/cccadb63-d7fe-2559-ab62-c3b95a066a82/v1/audio/transcriptions",
-    "audio_transcription_token": "sk-ouyJb7y6nXNR64ftd9cEdqQLLwb64FFhKfL9o6Em2xk2mkNL",
-    "audio_transcription_model": "sensevoice"
-}
-```
+本程序兼容符合OpenAI `/v1/audio/transcriptions` 接口标准的API服务，包括但不限于：
+- OpenAI Whisper API
+- SenseVoice API
+- 其他兼容OpenAI接口的语音转文字服务
 
 ## 项目结构
 
