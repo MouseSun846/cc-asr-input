@@ -1830,3 +1830,4 @@ build/exe.win-amd64-3.12/lib/tkinter/messagebox.pyc
 build/exe.win-amd64-3.12/lib/tkinter/scrolledtext.pyc
 build/exe.win-amd64-3.12/lib/tkinter/simpledialog.pyc
 build/exe.win-amd64-3.12/lib/tkinter/tix.pyc
+.env

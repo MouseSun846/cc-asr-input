@@ -12,11 +12,13 @@ from tkinter import ttk
 from pynput import keyboard
 from typing import Dict, Any
 
-# 配置信息
+# 配置信息 - 从环境变量获取
+import os
+
 CONFIG = {
-    "audio_transcription_url": "https://lgy-in-dev.cnbita.com/cccadb63-d7fe-2559-ab62-c3b95a066a82/v1/audio/transcriptions",
-    "audio_transcription_token": "sk-ouyJb7y6nXNR64ftd9cEdqQLLwb64FFhKfL9o6Em2xk2mkNL",
-    "audio_transcription_model": "sensevoice"
+    "audio_transcription_url": os.getenv("AUDIO_TRANSCRIPTION_URL"),
+    "audio_transcription_token": os.getenv("AUDIO_TRANSCRIPTION_TOKEN"),
+    "audio_transcription_model": os.getenv("AUDIO_TRANSCRIPTION_MODEL")
 }
 
 # 全局变量
