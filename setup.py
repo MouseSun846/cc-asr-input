@@ -6,8 +6,8 @@ script_name = "audio_transcription_tool.py"
 
 # 可执行文件配置
 base = None
-if sys.platform == "win32":
-    base = "Win32GUI"  # 使用GUI模式，不显示控制台窗口
+# if sys.platform == "win32":
+#     base = "Win32GUI"  # 使用GUI模式，不显示控制台窗口
 
 # 可执行文件设置
 executables = [
@@ -27,10 +27,10 @@ setup(
     executables=executables,
     options={
         "build_exe": {
-            "packages": ["keyboard", "sounddevice", "wave", "os", "tempfile", "requests", "pyperclip", "pyautogui", "time", "threading", "shutil", "numpy"],
+            "packages": ["pynput", "sounddevice", "wave", "os", "tempfile", "requests", "pyperclip", "pyautogui", "time", "threading", "shutil", "numpy", "tkinter"],
             "include_files": [],
             "excludes": [],
-            "optimize": 2
+            "optimize": 0
         }
     }
 )
